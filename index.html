@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Persönlicher Schulorganizer für Aufgaben, Präsentationen, Notizen, Dateien und Fächer."
+>
+
+<meta
+    name="theme-color"
+    content="#2563eb"
+>
+
+<title>Schulorganizer</title>
+
+<link rel="stylesheet" href="/src/style.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+        <img
+            class="brand-logo"
+            src="/logo.png"
+            alt="Schulorganizer Logo"
+        >
+
+            <div>
+            <h1>Schulorganizer</h1>
+            <span>Mein Schulbereich</span>
+            </div>
+        </div>
+
+        <nav class="navigation" aria-label="Hauptnavigation">
+
+            <button
+                class="nav-item active"
+                type="button"
+                data-page="dashboard"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Übersicht</span>
+            </button>
+
+            <button
+                class="nav-item"
+                type="button"
+                data-page="tasks"
+            >
+                <span class="nav-icon">✓</span>
+                <span>Aufgaben</span>
+            </button>
+
+            <button
+                class="nav-item"
+                type="button"
+                data-page="presentations"
+            >
+                <span class="nav-icon">▣</span>
+                <span>Präsentationen</span>
+            </button>
+
+            <button
+                class="nav-item"
+                type="button"
+                data-page="notes"
+            >
+                <span class="nav-icon">▤</span>
+                <span>Notizen</span>
+            </button>
+
+            <button
+                class="nav-item"
+                type="button"
+                data-page="files"
+            >
+                <span class="nav-icon">▱</span>
+                <span>Dateien</span>
+            </button>
+
+            <button
+                class="nav-item"
+                type="button"
+                data-page="subjects"
+            >
+                <span class="nav-icon">◈</span>
+                <span>Fächer</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>Schulorganizer</span>
+            <span class="version">v1.0</span>
+        </div>
+
+    </aside>
+
+
+    <!-- Main content -->
+    <main class="content">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div class="topbar-info">
+                <h2 id="pageTitle">
+                    hÜbersict
+                </h2>
+
+                <p id="pageDescription">
+                    Alles Wichtige auf einen Blick.
+                </p>
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    id="addButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    <span>+</span>
+                    <span>Hinzufügen</span>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Dashboard -->
+        <section
+            id="dashboardPage"
+            class="page active-page"
+        >
+
+            <div class="dashboard-grid">
+
+                <article class="dashboard-card">
+
+                    <div class="card-top">
+                        <span class="card-label">
+                            Aufgaben
+                        </span>
+
+                        <span class="card-icon">
+                            ✓
+                        </span>
+                    </div>
+
+                    <strong id="taskCount">
+                        0
+                    </strong>
+
+                    <span class="card-description">
+                        offene Aufgaben
+                    </span>
+
+                </article>
+
+
+                <article class="dashboard-card">
+
+                    <div class="card-top">
+                        <span class="card-label">
+                            Präsentationen
+                        </span>
+
+                        <span class="card-icon">
+                            ▣
+                        </span>
+                    </div>
+
+                    <strong id="presentationCount">
+                        0
+                    </strong>
+
+                    <span class="card-description">
+                        gespeichert
+                    </span>
+
+                </article>
+
+
+                <article class="dashboard-card">
+
+                    <div class="card-top">
+                        <span class="card-label">
+                            Notizen
+                        </span>
+
+                        <span class="card-icon">
+                            ▤
+                        </span>
+                    </div>
+
+                    <strong id="noteCount">
+                        0
+                    </strong>
+
+                    <span class="card-description">
+                        gespeichert
+                    </span>
+
+                </article>
+
+
+                <article class="dashboard-card">
+
+                    <div class="card-top">
+                        <span class="card-label">
+                            Dateien
+                        </span>
+
+                        <span class="card-icon">
+                            ▱
+                        </span>
+                    </div>
+
+                    <strong id="fileCount">
+                        0
+                    </strong>
+
+                    <span class="card-description">
+                        gespeichert
+                    </span>
+
+                </article>
+
+            </div>
+
+
+            <section class="content-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h3>
+                            Aktuelle Aufgaben
+                        </h3>
+
+                        <p>
+                            Deine nächsten schulischen Aufgaben.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    id="recentTasks"
+                    class="item-list"
+                >
+                    <div class="empty-state">
+                        Keine Aufgaben vorhanden.
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- Tasks -->
+        <section
+            id="tasksPage"
+            class="page"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <h3>
+                        Aufgaben
+                    </h3>
+
+                    <p>
+                        Verwalte deine schulischen Aufgaben.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="taskList"
+                class="item-list"
+            >
+                <div class="empty-state">
+                    Keine Aufgaben vorhanden.
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Presentations -->
+        <section
+            id="presentationsPage"
+            class="page"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <h3>
+                        Präsentationen
+                    </h3>
+
+                    <p>
+                        Plane und verwalte deine Präsentationen.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="presentationList"
+                class="item-list"
+            >
+                <div class="empty-state">
+                    Keine Präsentationen vorhanden.
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Notes -->
+        <section
+            id="notesPage"
+            class="page"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <h3>
+                        Notizen
+                    </h3>
+
+                    <p>
+                        Speichere wichtige Informationen und Notizen.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="noteList"
+                class="item-list"
+            >
+                <div class="empty-state">
+                    Keine Notizen vorhanden.
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Files -->
+        <section
+            id="filesPage"
+            class="page"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <h3>
+                        Dateien
+                    </h3>
+
+                    <p>
+                        Verwalte deine schulischen Dateien.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="fileList"
+                class="item-list"
+            >
+                <div class="empty-state">
+                    Keine Dateien vorhanden.
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Subjects -->
+        <section
+            id="subjectsPage"
+            class="page"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <h3>
+                        Fächer
+                    </h3>
+
+                    <p>
+                        Organisiere deine Inhalte nach Fach.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="subjectList"
+                class="subject-grid"
+            >
+                <div class="empty-state">
+                    Keine Fächer vorhanden.
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Modal -->
+<div
+    id="modal"
+    class="modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+                <h2 id="modalTitle">
+                    Hinzufügen
+                </h2>
+            </div>
+
+            <button
+                id="modalClose"
+                class="modal-close"
+                type="button"
+                aria-label="Schließen"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="modalBody"
+            class="modal-body"
+        ></div>
+
+
+        <div class="modal-footer">
+
+            <button
+                id="modalCancel"
+                class="secondary-button"
+                type="button"
+            >
+                Abbrechen
+            </button>
+
+            <button
+                id="modalSubmit"
+                class="primary-button"
+                type="button"
+            >
+                Speichern
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Toast notifications are created dynamically -->
+
+
+<script
+    type="module"
+    src="/src/main.js"
+></script>
+```
+
+</body>
+</html>
